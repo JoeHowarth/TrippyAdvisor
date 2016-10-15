@@ -47,6 +47,7 @@
         });
       }
 
+      
       function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
@@ -59,6 +60,7 @@
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
+         return results[0].geometry.location
         });
       }
     </script>
