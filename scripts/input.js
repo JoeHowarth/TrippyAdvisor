@@ -12,7 +12,7 @@
         document.getElementById('submit').addEventListener('click', function() {
           getPin(, map);
         
-        daniel's alg(location
+        //daniel's alg(location
         });
       }
 
