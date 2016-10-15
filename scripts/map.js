@@ -45,7 +45,11 @@ function requestDirection(tripPois){
 function printResult(tripPois){
     $("#left").text("");
     for(var i = 0; i < tripPois.length; i++){
+<<<<<<< HEAD
         $("#left").append("<h4 style='color:blue'>" + tripPois[i].name + "</h4>");
+=======
+        $("#left").append("<h3 style='color:blue'>" + tripPois[i].name + "</h3>");
+>>>>>>> origin/master
         $("#left").append("</br> ");
     }
     
