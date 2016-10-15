@@ -1,15 +1,5 @@
 /*CSS*/
 
-#googleMap {
-	float: none;
-    padding: 10px;
-	margin: auto;
-    width: 85vw;
-    height: 80vh;
-	float: none;
-    border-radius: 10px;
-}
-
 H1{
     color: black;
     font-family: Frutiger Roman;
@@ -101,4 +91,30 @@ li.active a {
   background-image: -o-linear-gradient(top, #589442, #239931);
   background-image: linear-gradient(to bottom, #589442, #239931);
   text-decoration: none;
+}
+#map {
+        height: 100%;
+      }
+#floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+}
+
+body{
+    background-image: url(world.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+input{
+    background: rgba(255, 255, 255, 0.5);
 }
