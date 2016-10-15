@@ -5,72 +5,72 @@
     <title>Spontanious Advisor</title>
     <link href="styles/main.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<!--    <script src="http://www.geoplugin.net/javascript.gp"></script>-->
     <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4&callback=initMap">
     </script>
-    <script src="scripts/map.js"></script>
     <link href="bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <script src="scripts/map.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <h1>Trippy Advisor</h1>
+    <!--<div class="container"> -->
         
-        </div>
         <div class="row test">
-            <div class="col-md-3">
-                <input id="textbox" type="text" maxlength="30" value="42.33141,-71.099396">
-                <input id="locNum" type="text" maxlength="30" value="5">
-                <input id="distance" type="text" maxlength="30" value="3">
-                <input id="priceWeight" type="text" maxlength="30" value="5">
-                <button id="go" type="button">Press</button>
-                    <br/>
-                        <p id="test">Testing</p>
+            <div id="left" class="col-sm-3" border="5px">
+                <div class="row">
+            <h1> trippy<span class="greenText">advisor </span></h1>
+        
+            </div>
+                <form>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" placeholder="574 Boston Ave, Medford, MA">
+                    </div>
+                    <div class="form-group">
+                        <label for="locNum">Number of Desired Locations</label>
+                        <input type="text" class="form-control" id="locNum" placeholder="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="distance">Desired Travel Distance in Miles</label>
+                        <input type="text" class="form-control" id="distance" placeholder="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="priceWeight">Cheapness Scale: 1-10 || Royalty-Mr.Krabs</label>
+                        <input type="text" class="form-control" id="priceWeight" placeholder="5">
+                    </div>
+                </form>
+                
+                <button id="go" type="button" class="btn btn-primary btn-sm btn-block">Time to Trip!!!</button>
             </div>
             
-            <ul class="nav nav-pills">
-                <li class="active"><a data-toggle="pill" href="#">Home</a></li>
-                <li><a data-toggle="pill" href="#menu1">Menu 1</a></li>
-                <li><a data-toggle="pill" href="#menu2">Menu 2</a></li>
-                <li><a data-toggle="pill" href="#menu3">Menu 3</a></li>
-            </ul>
-  
-              <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
-                  <h3>HOME</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div id="menu1" class="tab-pane fade">
-                  <h3>Menu 1</h3>
-                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-                <div id="menu2" class="tab-pane fade">
-                  <h3>Menu 2</h3>
-                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                </div>
-                <div id="menu3" class="tab-pane fade">
-                  <h3>Menu 3</h3>
-                  <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                </div>
-              </div>
+            <div id="right" class="col-sm-9">
             
-            <div class="col-md-9 test">
-                <div id="map"></div>  
+                
+                
+            <div class="col-sm-9 test">
+                <div id="map" style="width:900px;height:550px;margin: 0 auto" frameborder="3px"></div>  
             </div>
+           </div>                                                                         
         </div>
-        
-        
-        
-        </div>
-    <div class="test">
-</div>
+    
         <script src="scripts/map.js"></script>
         <script src="scripts/script.js"></script>
-    <script src="scripts/input.js"></script>
-    
-    
+        <script src="scripts/input.js"></script>
+    <script type="text/javascript">
+
+//function initialize() {
+//    var latlng = new google.maps.LatLng(-34.397, 150.644);
+//    var myOptions = {
+//        zoom: 8,
+//        center: latlng,
+//        mapTypeId: google.maps.MapTypeId.ROADMAP
+//    };
+//    var map = new google.maps.Map(document.getElementById("map"),
+//            myOptions);
+//}
+//google.maps.event.addDomListener(window, "load", initialize);
+
+</script>
 </body>
 </html>

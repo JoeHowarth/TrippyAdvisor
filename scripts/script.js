@@ -17,19 +17,21 @@ function Poi(locId, name, rating, num_reviews, cat, subcat, price, dis, lat, lng
 };
 
 $(document).on("click", "#go", function(){
-    var startLoc = $("#textbox").val();
+//    var startLoc = $("#textbox").val();
+    
     var points = $("#locNum").val();
     var prefDist = $("#distance").val() / points;
     var priceWeight = $("#priceWeight").val();
-//     var restaurantNum = $("#restaurantNum").val();
-    var tripPois = [];
-  
-    pushPoi(startLoc, prefDist, priceWeight, tripPois, points);
+    console.log("creating tripPoi");
+    var tripLocs = new Array();
+    //conditional for different input methods?
+    
+
+    var startLoc = getLocFromName($("#address").val(), prefDist, priceWeight, tripLocs, points);
+    
 })  
 
-
-
-function pushPoi(location, prefDist, priceWeight, tripPois, points){
+function pushPoi(location, prefDist, priceWeight, tripLocs, points){
     var poiAry = [];
     var ajaxComplete = false;
     $.ajax({
@@ -38,7 +40,19 @@ function pushPoi(location, prefDist, priceWeight, tripPois, points){
         success: function(poiData){
             for(var i = 0; i < poiData.data.length; i++){
                 var tempPoi = poiData.data[i];
-//                console.log(tempPoi);
+                var repeating = false;
+                
+                for(var j = 0; j < tripLocs.length; j++){
+                    if(tempPoi.name == tripLocs[j].name){
+                        repeating = true;
+                        break;
+                    }
+                }
+                if(repeating){
+                    continue;
+                }
+                
+                
                 switch(tempPoi.price_level){
                 case "$":
                     tempPoi.price_level = 1;
@@ -55,7 +69,8 @@ function pushPoi(location, prefDist, priceWeight, tripPois, points){
                 default:
                     tempPoi.price_level = 0;
                 }
-
+                
+                
                 poiAry.push(new Poi(
                     tempPoi.location_id, 
                     tempPoi.name, 
@@ -71,33 +86,17 @@ function pushPoi(location, prefDist, priceWeight, tripPois, points){
                 ));
             }
             
-            var returnAry = removeRepeat(poiAry, tripPois);
+            var weight = weightPoi(poiAry, prefDist, priceWeight);
+            tripLocs.push(weight);
             
-            tripPois.push(weightPoi(returnAry, prefDist, priceWeight));
             points--;
             if(points > 0){
-                pushPoi(location, prefDist, priceWeight, tripPois, points);
+                pushPoi(location, prefDist, priceWeight, tripLocs, points);
             }else{
-                requestDirection(tripPois);
+                requestDirection(tripLocs);
             }
         }
     });
-}
-
-function removeRepeat(removeAry, originAry){
-    if(removeAry.length == 0 || originAry.length == 0){
-        return removeAry;
-    }
-    
-    for(var i = 0; i < removeAry.length; i++){
-        for(var j = 0; j < originAry.length; j++){
-            if(removeAry[i].name == originAry[j].name){
-                removeAry.splice(i, 1);
-                i--;
-            }
-        }
-    }
-    return removeAry;
 }
 
 function weightPoi(poiAry, prefDist, priceWeight){
@@ -117,9 +116,7 @@ function weightPoi(poiAry, prefDist, priceWeight){
         
         var randArea = 180 / (poi.rating / 2 + 30) + 1;
         var randBonus = (Math.random() * 1 - 0.5) * randArea;
-        
-//        console.log(weight+" "+randBonus);
-        
+
         poi["weight"] = weight + randBonus;
         weightedPoi.push(poi);
     }
@@ -133,7 +130,6 @@ function weightPoi(poiAry, prefDist, priceWeight){
             }
         }
     }
-//    console.log(weightedPoi);
     return weightedPoi[0];
 }
 
