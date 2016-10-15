@@ -1,15 +1,18 @@
-function Poi(locId, name, rank, cat, subcat, price, cuisine, dis){
+function Poi(locId, name, rating, num_reviews, cat, subcat, price, cuisine, dis){
     this.location_id = locId,
     this.name = name,
-    this.ranking_data = rank,
+    this.rating = rating,
+    this.num_reviews = num_reviews,
+//    this.ranking_data = rank,
     //attraction, restaurant, hotel
-    this.category = cat,
+    this.category = cat, 
     //pizza, sushi, japanese, nightlife
     this.subcategory = subcat,
     //portrayed as '$' 
     this.price_level = price,
 //    this.cuisine = cuisine,
-    this.distance = dis
+    this.distance = dis,
+    var weight
 }
 
 $(document).on("click", "#submit", function(){
@@ -25,7 +28,8 @@ $(document).on("click", "#submit", function(){
                 poiAry.push(new Poi(
                     tempPoi.location_id, 
                     tempPoi.name, 
-                    tempPoi.ranking_data, 
+                    tempPoi.rating,
+                    tempPoi.num_reviews,
                     tempPoi.category.name, 
                     tempPoi.subcategory, 
                     tempPoi.price_level, 
@@ -40,7 +44,13 @@ $(document).on("click", "#submit", function(){
 });
 
 function weighPoi(poiAry){
-    
+    var weightedPoi[];
+    for(var i = 0; i < poiAry.length; i++){
+        var poi = poiAry[i];
+        if(poi.num_reviews == 0){
+            var weight = -13-5*dist/prefDist
+        }
+    }
 
 }
 
