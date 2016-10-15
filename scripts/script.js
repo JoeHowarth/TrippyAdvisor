@@ -1,9 +1,3 @@
-//$(document).on("click", "#submit", function(){
-//    console.log("Hello");
-//    var location = $("#textbox").val();
-//    $("#test").load("http://api.tripadvisor.com/api/partner/2.0/map/"+ location + "?key=89DE2CFC0C1C43978B484B55F9A514EC");  
-//});
-
 function Poi(locId, name, rank, cat, subcat, price, cuisine, dis){
     this.location_id = locId,
     this.name = name,
@@ -40,12 +34,12 @@ $(document).on("click", "#submit", function(){
                 ));
                 console.log(poiAry[i]);
             }
-        weighPoi();
+        weighPoi(poiAry);
         }     
     });
 });
 
-function weighPoi(){
+function weighPoi(poiAry){
     
 
 }
