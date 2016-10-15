@@ -22,7 +22,6 @@ $(document).on("click", "#go", function(){
     var points = $("#locNum").val();
     var prefDist = $("#distance").val() / points;
     var priceWeight = $("#priceWeight").val();
-    console.log("creating tripPoi");
     var tripLocs = new Array();
     //conditional for different input methods?
     
@@ -105,11 +104,11 @@ function weightPoi(poiAry, prefDist, priceWeight){
         var poi = poiAry[i];
         var weight = 0;
         if(poi.num_reviews == 0){
-            weight = 2 - Math.abs(5 - (5 * poi.distance / prefDist));
+            weight = 2 - (Math.abs(poi.distance - prefDist)/poi.distance);
             weight += priceWeight * Math.pow(2, Math.abs(poi.price_level - 1) - 2) * (1 - poi.price_level) / Math.abs(1 - poi.price_level);
             weight = Math.pow(weight, 2) * 1 / 9;
         }else{
-            weight = poi.rating - Math.abs(5 - (5 * poi.distance / prefDist));
+            weight = poi.rating - (Math.abs(poi.distance - prefDist)/poi.distance);
             weight += priceWeight * Math.pow(2, Math.abs(poi.price_level - 1) - 2) * (1 - poi.price_level) / Math.abs(1 - poi.price_level);
             weight = Math.pow(weight, 2) * 1 / 9;
         }

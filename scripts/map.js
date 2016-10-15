@@ -39,5 +39,14 @@ function requestDirection(tripPois){
             directionsDisplay.setDirections(result);
         }
     });
+  //  printResult(tripPois);
 }
-
+//
+//function printResult(){
+//    $("#left").text("");
+//    
+//    
+//
+//
+//}
+//
