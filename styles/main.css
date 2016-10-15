@@ -15,9 +15,7 @@ H1{
 .background{
     background:rgba(173,216,230,0.5);
 }
-body {
-  background: #EOFFFF;
-}
+
 
 * {
   margin: 0;
@@ -100,12 +98,41 @@ li.active a {
         width: 100%;
         margin: 0px 0px;
       }
+
+#container{width:1900px;}
+
+.col-sm-3 {
+    height: 100%;
+    position: absolute;
+    top: 7%;
+    left: 27%;
+    transform: translate(-50%) translate(-50%);
+    background-color: aliceblue;
+}
+
+.col-sm-9 {
+    position: absolute;
+    top: 0%;
+    left: 80%;
+    transform: translate(-50%) translate(-50%);
+    
+    
+}
+
+#right {
+    background-image: url(world2.jpeg);
+    background-size: 90%;
+    background-repeat: no-repeat;
+    height: auto;
+    width: auto;
+}
+
 #floating-panel {
         position: absolute;
         top: 10px;
         left: 25%;
         z-index: 5;
-        background-color: #fff;
+        background-color: #cdc8b1;
         padding: 5px;
         border: 1px solid #999;
         text-align: center;
@@ -114,12 +141,7 @@ li.active a {
         padding-left: 10px;
 }
 
-body{
-    background-image: url(world.png);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-}
+
 input{
     background: rgba(255, 255, 255, 0.5);
 }
@@ -142,6 +164,7 @@ body {
     height: 100%; 
     margin: 0; 
     padding: 0; 
+     background-color: #cdc8b1;
 }
 .test {
     height: 800px;
