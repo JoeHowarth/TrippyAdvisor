@@ -1,4 +1,4 @@
-function Poi(locId, name, rating, num_reviews, cat, subcat, price, cuisine, dis){
+function Poi(locId, name, rating, num_reviews, cat, subcat, price, dis){
     this.location_id = locId,
     this.name = name,
     this.rating = rating,
@@ -11,12 +11,31 @@ function Poi(locId, name, rating, num_reviews, cat, subcat, price, cuisine, dis)
     //portrayed as '$' 
     this.price_level = price,
 //    this.cuisine = cuisine,
-    this.distance = dis,
-    var weight
+    this.distance = dis
 }
 
-$(document).on("click", "#submit", function(){
-    var location = $("#textbox").val();
+$(document).on("click", "#go", function(){
+    var startLoc = $("#textbox").val();
+    var points = $("#locNum").val();
+    var prefDist = $("#distance").val() / points;
+    var priceWeight = $("#priceWeight").val;
+    
+    var tripPois = [];
+    
+    for(int i = 0; i < points; i++){
+        if(i == 0){
+            getPois(startLoc);
+        }else{
+            tripPois.push(getPois(tripPois[i-1].location_id));
+        }
+    }
+
+})
+
+
+
+function getPois(location){
+    var returnPoi;
     $.ajax({
         url: "http://api.tripadvisor.com/api/partner/2.0/map/"+ location + "/attractions?key=89DE2CFC0C1C43978B484B55F9A514EC", 
         dataType: "json", 
@@ -25,6 +44,23 @@ $(document).on("click", "#submit", function(){
             for(var i = 0; i < poiData.data.length; i++){
                 var tempPoi = poiData.data[i];
                 console.log(tempPoi);
+                switch(tempPoi.price_level){
+                case "$":
+                    tempPoi.price_level = 1;
+                    break;        
+                case "$$":
+                    tempPoi.price_level = 2;
+                    break;
+                case "$$$":
+                    tempPoi.price_level = 3;
+                    break;
+                case "$$$$":
+                    tempPoi.price_level = 4;
+                    break;
+                default:
+                    tempPoi.price_level = 0;
+                }
+                
                 poiAry.push(new Poi(
                     tempPoi.location_id, 
                     tempPoi.name, 
@@ -38,20 +74,51 @@ $(document).on("click", "#submit", function(){
                 ));
                 console.log(poiAry[i]);
             }
-        weighPoi(poiAry);
+            returnPoi = weighPoi(poiAry, 0.3, 5);
+            
         }     
     });
-});
+    return returnPoi;
+}
 
-function weighPoi(poiAry){
-    var weightedPoi[];
+function weighPoi(poiAry, prefDist, priceWeight){
+    console.log("weightPoi");
+    console.log(poiAry);
+    var weightedPoi = [];
     for(var i = 0; i < poiAry.length; i++){
         var poi = poiAry[i];
+        var weight = 0;
         if(poi.num_reviews == 0){
-            var weight = -13-5*dist/prefDist
+            weight = 2 - Math.abs(5 - (5 * poi.distance / prefDist));
+            weight += priceWeight * Math.pow(2, Math.abs(poi.price_level - 1) - 2) * (1 - poi.price_level) / Math.abs(1 - poi.price_level);
+            weight = Math.pow(weight, 2) * 1 / 9;
+        }else{
+            weight = poi.rating - Math.abs(5 - (5 * poi.distance / prefDist));
+            weight += priceWeight * Math.pow(2, Math.abs(poi.price_level - 1) - 2) * (1 - poi.price_level) / Math.abs(1 - poi.price_level);
+            weight = Math.pow(weight, 2) * 1 / 9;
+        }
+        
+        var randArea = 180 / (poi.rating / 2 + 30) + 1;
+        var randBonus = (Math.random() * 1 - 0.5) * randArea;
+        
+        console.log(weight+" "+randBonus);
+        
+        poi["weight"] = weight + randBonus;
+        weightedPoi.push(poi);
+    }
+    
+    for(var i = 0; i < weightedPoi.length; i++){
+        for(var j = i + 1; j < weightedPoi.length; j++){
+            if(weightedPoi[i].weight < weightedPoi[j].weight){
+                var temp = weightedPoi[i];
+                weightedPoi[i] = weightedPoi[j];
+                weightedPoi[j] = temp;
+            }
         }
     }
-
+    
+    console.log(weightedPoi);
+    return weightedPoi[0];
 }
 
 
