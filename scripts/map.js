@@ -39,14 +39,19 @@ function requestDirection(tripPois){
             directionsDisplay.setDirections(result);
         }
     });
-  //  printResult(tripPois);
+    printResult(tripPois);
 }
-//
-//function printResult(){
-//    $("#left").text("");
-//    
-//    
-//
-//
-//}
-//
+
+function printResult(tripPois){
+    $("#left").text("");
+    for(var i = 0; i < tripPois.length; i++){
+        $("#left").append("<h3 style='color:blue'>" + tripPois[i].name + "</h3>");
+        $("#left").append("</br> ");
+    }
+    
+    $("#left").append("</br> ");
+    $("#left").append("<button id='reset' type='button' class='btn btn-primary'>RESET</button>");
+    
+
+}
+

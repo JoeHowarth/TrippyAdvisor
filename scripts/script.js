@@ -132,5 +132,7 @@ function weightPoi(poiAry, prefDist, priceWeight){
     return weightedPoi[0];
 }
 
-
+$(document).on("click", "#reset", function(){
+    location.reload();
+})
 
