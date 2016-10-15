@@ -1,7 +1,7 @@
 // centers map on input address
 // returns 
     
-    function geocodeAddress(geocoder, resultsMap) {
+    function geoAdd(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
