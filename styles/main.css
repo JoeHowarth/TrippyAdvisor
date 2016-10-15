@@ -99,7 +99,7 @@ li.active a {
         margin: 0px 0px;
       }
 
-#container{width:1900px;}
+#container{width: auto;}
 
 .col-sm-3 {
     height: 100%;
@@ -120,9 +120,7 @@ li.active a {
 }
 
 #right {
-    background-image: url(world2.jpeg);
-    background-size: 90%;
-    background-repeat: no-repeat;
+    
     height: auto;
     width: auto;
 }

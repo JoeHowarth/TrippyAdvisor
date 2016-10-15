@@ -1,0 +1,5 @@
+//#input stuff
+
+var text_input = $("#textboox").val();
+
+
