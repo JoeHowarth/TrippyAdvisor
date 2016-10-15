@@ -1,5 +1,13 @@
 // centers map on input address
 // returns long lat 
+ myLat = 0;
+                        myLng = 0;
+                        var me = new google.maps.LatLng(myLat, myLng);
+                        var myOptions = {
+                                            zoom: 13, // The larger the zoom number, the bigger the zoom
+                                            center: me,
+                                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                                        };
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
