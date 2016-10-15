@@ -13,7 +13,7 @@
          // getPin(, map);
         
         //daniel's alg(location
-        });
+       // });
       }
 
     function getLoc(geocoder, resultsMap) {
