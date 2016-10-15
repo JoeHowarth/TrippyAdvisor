@@ -18,25 +18,17 @@ $(document).on("click", "#go", function(){
     var startLoc = $("#textbox").val();
     var points = $("#locNum").val();
     var prefDist = $("#distance").val() / points;
-    var priceWeight = $("#priceWeight").val;
-    
+    var priceWeight = $("#priceWeight").val();
+//     var restaurantNum = $("#restaurantNum").val();
     var tripPois = [];
-    
-    for(var i = 0; i < points; i++){
-        if(i == 0){
-            tripPois.push(getPoi(startLoc, prefDist, priceWeight));
-        }else{
-            tripPois.push(getPoi(tripPois[i-1].location_id, prefDist, priceWeight));
-        }
-    }
+  
+    pushPoi(startLoc, prefDist, priceWeight, tripPois, points);
     
     console.log(tripPois);
 
-})
+})  
 
-
-
-function getPoi(location, prefDist, priceWeight){
+function pushPoi(location, prefDist, priceWeight, tripPois, points){
     var poiAry = [];
     var ajaxComplete = false;
     $.ajax({
@@ -75,16 +67,35 @@ function getPoi(location, prefDist, priceWeight){
                     tempPoi.distance
                 ));
             }
-            console.log("Hello from ajax");
-            return poiData;
+            
+            var returnAry = removeRepeat(poiAry, tripPois);
+            
+            tripPois.push(weightPoi(returnAry, prefDist, priceWeight));
+            points--;
+            if(points > 0){
+                pushPoi(location, prefDist, priceWeight, tripPois, points);
+            }
         }
     });
-    console.log("hello again");
 }
 
-function weighPoi(poiAry, prefDist, priceWeight){
-    //console.log("weightPoi");
-    //console.log(poiAry);
+function removeRepeat(removeAry, originAry){
+    if(removeAry.length == 0 || originAry.length == 0){
+        return removeAry;
+    }
+    
+    for(var i = 0; i < removeAry.length; i++){
+        for(var j = 0; j < originAry.length; j++){
+            if(removeAry[i].name == originAry[j].name){
+                removeAry.splice(i, 1);
+                i--;
+            }
+        }
+    }
+    return removeAry;
+}
+
+function weightPoi(poiAry, prefDist, priceWeight){
     var weightedPoi = [];
     for(var i = 0; i < poiAry.length; i++){
         var poi = poiAry[i];
@@ -102,7 +113,7 @@ function weighPoi(poiAry, prefDist, priceWeight){
         var randArea = 180 / (poi.rating / 2 + 30) + 1;
         var randBonus = (Math.random() * 1 - 0.5) * randArea;
         
-        console.log(weight+" "+randBonus);
+//        console.log(weight+" "+randBonus);
         
         poi["weight"] = weight + randBonus;
         weightedPoi.push(poi);
@@ -117,8 +128,7 @@ function weighPoi(poiAry, prefDist, priceWeight){
             }
         }
     }
-    
-    console.log(weightedPoi);
+//    console.log(weightedPoi);
     return weightedPoi[0];
 }
 

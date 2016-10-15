@@ -5,20 +5,72 @@
     <title>Spontanious Advisor</title>
     <link href="styles/main.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="http://www.geoplugin.net/javascript.gp"></script>
-    <script src="scripts/map.js"></script>>
+<!--    <script src="http://www.geoplugin.net/javascript.gp"></script>-->
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+    <script src="scripts/map.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4&callback=initMap">
+    </script>
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <h1>Trippy Advisor</h1>
-    <input id="textbox" type="text" maxlength="30" value="42.33141,-71.099396">
-    <input id="locNum" type="text" maxlength="30" value="5">
-    <input id="distance" type="text" maxlength="30" value="3">
-    <input id="priceWeight" type="text" maxlength="30" value="5">
-    <button id="go" type="button">Press</button>
-    <br/>
-    <p id="test">Testing</p>
-
+    <div class="container">
+        <div class="row">
+            <h1>Trippy Advisor</h1>
+        
+        </div>
+        <div class="row test">
+            <div class="col-md-3">
+                <input id="address" type="text" maxlength="30" value="boston">
+                <input id="locNum" type="text" maxlength="30" value="5">
+                <input id="distance" type="text" maxlength="30" value="3">
+                <input id="priceWeight" type="text" maxlength="30" value="5">
+                <button id="go" type="button">Press</button>
+                    <br/>
+                        <p id="test">Testing</p>
+            </div>
+            
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href="#">Home</a></li>
+                <li><a data-toggle="pill" href="#menu1">Menu 1</a></li>
+                <li><a data-toggle="pill" href="#menu2">Menu 2</a></li>
+                <li><a data-toggle="pill" href="#menu3">Menu 3</a></li>
+            </ul>
+  
+              <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                  <h3>HOME</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                  <h3>Menu 1</h3>
+                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                  <h3>Menu 2</h3>
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                  <h3>Menu 3</h3>
+                  <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>
+              </div>
+            
+            <div class="col-md-9 test">
+                <div id="map"></div>  
+            </div>
+        </div>
+        
+        
+        
+        </div>
+    <div class="test">
+</div>
+        <script src="scripts/map.js"></script>
+        <script src="scripts/script.js"></script>
+    <script src="scripts/input.js"></script>
     
-    <script src="scripts/script.js"></script>
+    
 </body>
 </html>
