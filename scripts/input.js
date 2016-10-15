@@ -6,8 +6,8 @@
           center: {lat: -34.397, lng: 150.644} //change to tufts 
         });
         var geocoder = new google.maps.Geocoder();
-        document.getElementById('submit').addEventListener('click', function() {
-          getLoc(geocoder, map);
+        //document.getElementById('submit').addEventListener('click', function() {
+        //  getLoc(geocoder, map);
         
         //document.getElementById('submit').addEventListener('click', function() {
          // getPin(, map);
