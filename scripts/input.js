@@ -1,7 +1,7 @@
 // centers map on input address
 // returns long lat 
  
-    
+    function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
           center: {lat: -34.397, lng: 150.644}, //change to tufts
@@ -15,7 +15,7 @@
         loc = document.getElementById('address').addEventListener('click', function() {
           getLoc(geocoder, map);
         });
-        
+    }
    //     loc = document.getElementByPin('pin').addEventListener('click', function() {
    //       getPin(map);
    //     });
