@@ -1,6 +1,8 @@
 var directionsDisplay;
-var directionsService = new google.maps.DirectionsService();
+var directionsService;
 var map;
+
+$("#map").load(initMap());
 
 function initMap() {
     // Create a map object and specify the DOM element for display.
@@ -11,7 +13,9 @@ function initMap() {
         zoom: 5
     });
     directionsDisplay.setMap(map);
+    directionsService = new google.maps.DirectionsService();
 }
+google.maps.event.addDomListener(window, "load", initialize);
 
 function requestDirection(tripPois){
     var waypoints = [];
