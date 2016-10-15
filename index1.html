@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Spontanious Advisor</title>
+    <link href="styles/main.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!--    <script src="http://www.geoplugin.net/javascript.gp"></script>-->
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+    <script src="scripts/map.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4&callback=initMap">
+    </script>
+    <link href="bootstrap-3.3.7-dist/css/bootstrap.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1> trippy<span class="greenText">advisor </span></h1>
+        
+        </div>
+        <div class="row test">
+            <div class="col-sm-2">
+                <form>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="email" class="form-control" id="address" placeholder="574 Boston Ave, Medford, MA">
+                    </div>
+                    <div class="form-group">
+                        <label for="locNum">Number of Desired Locations</label>
+                        <input type="email" class="form-control" id="locNum" placeholder="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="distance">Desired Travel Distance in Miles</label>
+                        <input type="email" class="form-control" id="distance" placeholder="3">
+                    </div>
+                    <div class="form-group">
+                        <label for="priceWeight">Cheapness Scale: 1-10 || Royalty-Mr.Krabs</label>
+                        <input type="email" class="form-control" id="priceWeight" placeholder="5">
+                    </div>
+                </form>
+                
+                <button id="go" type="button" class="btn btn-primary btn-sm btn-block">Time to Trip!!!</button>
+                   
+                <img src = "./styles/trippyadvisor.png" style="width:150px;height:150px;margin-top:400px;">
+            </div>
+            
+            <ul class="nav nav-pills">
+                <li class="active"><a data-toggle="pill" href="#">Home</a></li>
+                <li><a data-toggle="pill" href="#menu1">Menu 1</a></li>
+                <li><a data-toggle="pill" href="#menu2">Menu 2</a></li>
+                <li><a data-toggle="pill" href="#menu3">Menu 3</a></li>
+            </ul>
+  
+              <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                  <h3>HOME</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                  <h3>Menu 1</h3>
+                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                  <h3>Menu 2</h3>
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                  <h3>Menu 3</h3>
+                  <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                </div>
+              </div>
+            
+            <div class="col-sm-10 test">
+                <div id="map" style="width:950px;height:550px" frameborder="0";"></div>  
+            </div>
+        </div>
+        
+        
+        
+        </div>
+    <div class="test">
+</div>
+        <script src="scripts/map.js"></script>
+        <script src="scripts/script.js"></script>
+    <script src="scripts/input.js"></script>
+    
+    
+</body>
+</html>
