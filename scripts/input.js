@@ -1,6 +1,7 @@
 // centers map on input address
 // returns long lat 
  
+<<<<<<< HEAD
     
 //        var map = new google.maps.Map(document.getElementById('map'), {
 //          zoom: 8,
@@ -23,6 +24,23 @@ $(document).on("click", "#go", function(){
     console.log(getLoc(geocoder, map));
 })
         
+=======
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: {lat: -34.397, lng: 150.644}, //change to tufts
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        
+        var geocoder = new google.maps.Geocoder();
+        console.log(map);
+        
+        var loc;
+        loc = document.getElementById('address').addEventListener('click', function() {
+          getLoc(geocoder, map);
+        });
+    }
+>>>>>>> origin/master
    //     loc = document.getElementByPin('pin').addEventListener('click', function() {
    //       getPin(map);
    //     });
