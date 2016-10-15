@@ -8,7 +8,7 @@
          mapTypeId: google.maps.MapTypeId.ROADMAP
         });
         var geocoder = new google.maps.Geocoder();
-        console.log(geocoder);
+        console.log(map);
         //document.getElementById('submit').addEventListener('click', function() {
         //  getLoc(geocoder, map);
         
