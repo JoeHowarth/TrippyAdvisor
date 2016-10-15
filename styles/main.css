@@ -1,5 +1,15 @@
 /*CSS*/
 
+#googleMap {
+	float: none;
+    padding: 10px;
+	margin: auto;
+    width: 85vw;
+    height: 80vh;
+	float: none;
+    border-radius: 10px;
+}
+
 H1{
     color: black;
     font-family: Frutiger Roman;
