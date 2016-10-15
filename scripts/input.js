@@ -11,7 +11,7 @@
         console.log(map);
         
         var loc;
-        loc = document.getElementById('submit_address').addEventListener('click', function() {
+        loc = document.getElementById('address').addEventListener('click', function() {
           getLoc(geocoder, map);
         });
         
@@ -23,7 +23,7 @@
       }
 
     function getLoc(geocoder, resultsMap) {
-        var address = document.getElementById('address').value;
+        var address = document.getElementById('input').value;
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
