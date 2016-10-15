@@ -12,13 +12,35 @@
 //}
 //
 
-console.log(geoplugin_latitude());
+//console.log(geoplugin_latitude());
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+var map;
 
 function initMap() {
     // Create a map object and specify the DOM element for display.
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 0, lng: 0},
-      scrollwheel: false,
-      zoom: 5
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 0, lng: 0},
+        scrollwheel: false,
+        zoom: 5
+    });
+    directionsDisplay.setMap(map);
+}
+
+function requestDirection(tripPois){
+    console.log(tripPois[1]);
+    var request = {
+        origin : new google.maps.LatLng(tripPois[0].lat, tripPois[0].lng),
+        destination : new google.maps.LatLng(tripPois[tripPois.length-1].lat, tripPois[tripPois.length-1].lng),
+        travelMode : "WALKING"
+    };
+    console.log("output");
+    directionsService.route(request, function(result, status) {
+        if (status == 'OK') {
+            console.log("output");
+            directionsDisplay.setDirections(result);
+        }
     });
 }
+

@@ -1,4 +1,4 @@
-function Poi(locId, name, rating, num_reviews, cat, subcat, price, dis){
+function Poi(locId, name, rating, num_reviews, cat, subcat, price, dis, lat, lng){
     this.location_id = locId,
     this.name = name,
     this.rating = rating,
@@ -11,8 +11,10 @@ function Poi(locId, name, rating, num_reviews, cat, subcat, price, dis){
     //portrayed as '$' 
     this.price_level = price,
 //    this.cuisine = cuisine,
-    this.distance = dis
-}
+    this.distance = dis,
+    this.lat = lat, 
+    this.lng = lng
+};
 
 $(document).on("click", "#go", function(){
     var startLoc = $("#textbox").val();
@@ -23,10 +25,9 @@ $(document).on("click", "#go", function(){
     var tripPois = [];
   
     pushPoi(startLoc, prefDist, priceWeight, tripPois, points);
-    
-    console.log(tripPois);
-
 })  
+
+
 
 function pushPoi(location, prefDist, priceWeight, tripPois, points){
     var poiAry = [];
@@ -64,7 +65,9 @@ function pushPoi(location, prefDist, priceWeight, tripPois, points){
                     tempPoi.subcategory, 
                     tempPoi.price_level, 
 //                  tempPoi.cuisine, 
-                    tempPoi.distance
+                    tempPoi.distance,
+                    tempPoi.latitude,
+                    tempPoi.longitude
                 ));
             }
             
@@ -74,6 +77,8 @@ function pushPoi(location, prefDist, priceWeight, tripPois, points){
             points--;
             if(points > 0){
                 pushPoi(location, prefDist, priceWeight, tripPois, points);
+            }else{
+                requestDirection(tripPois);
             }
         }
     });
