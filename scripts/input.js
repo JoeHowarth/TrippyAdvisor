@@ -9,12 +9,15 @@
         });
         var geocoder = new google.maps.Geocoder();
         console.log(map);
-        //document.getElementById('submit').addEventListener('click', function() {
-        //  getLoc(geocoder, map);
+        
+        var loc;
+        loc = document.getElementById('submit_address').addEventListener('click', function() {
+          getLoc(geocoder, map);
+        });
         
         //document.getElementById('submit').addEventListener('click', function() {
-         // getPin(, map);
-        
+        //  getPin(, map);
+      //  });
         //daniel's alg(location
        // });
       }
