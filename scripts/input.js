@@ -29,6 +29,6 @@
             alert('Geocode was not successful for the following reason: ' + status);
           }
          return results[0].geometry.location;
-        }
+        });
 
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4&callback=initMap">
