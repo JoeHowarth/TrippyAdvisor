@@ -2,10 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Spontanious Advisor</title>
+    <title>Trippy Advisor</title>
     <link href="styles/main.css" type="text/css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+<!--    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>-->
     <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4&callback=initMap">
@@ -14,10 +14,11 @@
     <script src="scripts/map.js"></script>
 </head>
 <body>
-    <!--<div class="container"> -->
+    <div class="container">
         
+<!--        <div class="row header"></div>-->
         <div class="row test">
-            <div id="left" class="col-sm-3" border="5px">
+            <div id="left" class="col-sm-3">
                 <div class="row">
             <h1> trippy<span class="greenText">advisor </span></h1>
         
@@ -28,11 +29,11 @@
                         <input type="text" class="form-control" id="address" placeholder="574 Boston Ave, Medford, MA">
                     </div>
                     <div class="form-group">
-                        <label for="locNum">Number of Desired Locations</label>
+                        <label for="locNum">Number of Desired Locations <br/>(10 max)</label>
                         <input type="text" class="form-control" id="locNum" placeholder="5">
                     </div>
                     <div class="form-group">
-                        <label for="distance">Desired Travel Distance in Miles</label>
+                        <label for="distance">Desired Travel Distance (Miles)</label>
                         <input type="text" class="form-control" id="distance" placeholder="3">
                     </div>
                     <div class="form-group">
@@ -42,18 +43,15 @@
                 </form>
                 
                 <button id="go" type="button" class="btn btn-primary btn-sm btn-block">Time to Trip!!!</button>
+                <img id="trippy" src="images/trippyadvisor.png" alt="Trippy Time"/>
             </div>
             
             <div id="right" class="col-sm-9">
-            
-                
-                
-            <div class="col-sm-9 test">
-                <div id="map" style="width:900px;height:550px;margin: 0 auto" frameborder="3px"></div>  
-            </div>
+                <div id="map" style="width:900px;height:800px;margin: 0 auto" frameborder="3px"></div>  
+
            </div>                                                                         
         </div>
-    
+    </div>
         <script src="scripts/map.js"></script>
         <script src="scripts/script.js"></script>
         <script src="scripts/input.js"></script>

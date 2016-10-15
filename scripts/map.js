@@ -39,5 +39,19 @@ function requestDirection(tripPois){
             directionsDisplay.setDirections(result);
         }
     });
+    printResult(tripPois);
+}
+
+function printResult(tripPois){
+    $("#left").text("");
+    for(var i = 0; i < tripPois.length; i++){
+        $("#left").append("<h4 style='color:blue'>" + tripPois[i].name + "</h4>");
+        $("#left").append("</br> ");
+    }
+    
+    $("#left").append("</br> ");
+    $("#left").append("<button id='reset' type='button' class='btn btn-primary'>RESET</button>");
+    
+
 }
 
