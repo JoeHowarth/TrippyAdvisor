@@ -1,16 +1,3 @@
-
- 
-$(document).on("click", "#go", function(){
-    var startLoc = $("#textbox").val();
-    var points = $("#locNum").val();
-    var prefDist = $("#distance").val() / points;
-    var priceWeight = $("#priceWeight").val();
-    
-    var tripAry = [];
-    
-    pushPois(startLoc, prefDist, priceWeight, points, tripAry);
-})
-
 function Poi(locId, name, rating, num_reviews, cat, subcat, price, dis){
     this.location_id = locId,
     this.name = name,
@@ -27,79 +14,76 @@ function Poi(locId, name, rating, num_reviews, cat, subcat, price, dis){
     this.distance = dis
 }
 
+$(document).on("click", "#go", function(){
+    var startLoc = $("#textbox").val();
+    var points = $("#locNum").val();
+    var prefDist = $("#distance").val() / points;
+    var priceWeight = $("#priceWeight").val;
+    
+    var tripPois = [];
+    
+    for(var i = 0; i < points; i++){
+        if(i == 0){
+            tripPois.push(getPoi(startLoc, prefDist, priceWeight));
+        }else{
+            tripPois.push(getPoi(tripPois[i-1].location_id, prefDist, priceWeight));
+        }
+    }
+    
+    console.log(tripPois);
 
-function pushPois(location, prefDist, priceWeight, loopCount, tripAry){
+})
+
+
+
+function getPoi(location, prefDist, priceWeight){
     var poiAry = [];
     var ajaxComplete = false;
     $.ajax({
         url: "http://api.tripadvisor.com/api/partner/2.0/map/"+ location + "/attractions?key=89DE2CFC0C1C43978B484B55F9A514EC", 
-        dataType: "json"
-    }).done(function(poiData){
-        for(var i = 0; i < poiData.data.length; i++){
-            var tempPoi = poiData.data[i];
+        dataType: "json",
+        success: function(poiData){
+            for(var i = 0; i < poiData.data.length; i++){
+                var tempPoi = poiData.data[i];
 //                console.log(tempPoi);
-            switch(tempPoi.price_level){
-            case "$":
-                tempPoi.price_level = 1;
-                break;        
-            case "$$":
-                tempPoi.price_level = 2;
-                break;
-            case "$$$":
-                tempPoi.price_level = 3;
-                break;
-            case "$$$$":
-                tempPoi.price_level = 4;
-                break;
-            default:
-                tempPoi.price_level = 0;
-            }
+                switch(tempPoi.price_level){
+                case "$":
+                    tempPoi.price_level = 1;
+                    break;        
+                case "$$":
+                    tempPoi.price_level = 2;
+                    break;
+                case "$$$":
+                    tempPoi.price_level = 3;
+                    break;
+                case "$$$$":
+                    tempPoi.price_level = 4;
+                    break;
+                default:
+                    tempPoi.price_level = 0;
+                }
 
-            poiAry.push(new Poi(
-                tempPoi.location_id, 
-                tempPoi.name, 
-                tempPoi.rating,
-                tempPoi.num_reviews,
-                tempPoi.category.name, 
-                tempPoi.subcategory, 
-                tempPoi.price_level, 
+                poiAry.push(new Poi(
+                    tempPoi.location_id, 
+                    tempPoi.name, 
+                    tempPoi.rating,
+                    tempPoi.num_reviews,
+                    tempPoi.category.name, 
+                    tempPoi.subcategory, 
+                    tempPoi.price_level, 
 //                  tempPoi.cuisine, 
-                tempPoi.distance
-            ));
-        }
-        poiAry = removeRepeat(poiAry, tripAry);
-        var returnPoi = evalPoi(poiAry, prefDist, priceWeight);
-        tripAry.push(returnPoi);
-        console.log("poi pushed");
-        loopCount--;
-        
-        if(loopCount > 0){
-            pushPois(poiAry[poiAry.length-1].location_id, prefDist, priceWeight, loopCount, tripAry);
-        }else{
-            complete(tripAry);
+                    tempPoi.distance
+                ));
+            }
+            console.log("Hello from ajax");
+            return poiData;
         }
     });
+    console.log("hello again");
 }
 
-function complete(tripAry){
-    console.log(tripAry);
-}
-
-function removeRepeat(removeAry, compareAry){
-    if(removeAry.length == 0 || compareAry.length == 0){
-        return removeAry;
-    }
-    for(var i = 0; i < removeAry.length; i++){
-        for(var j = 0; j < compareAry.length; j++){
-            if(removeAry[i] == compareAry[j]){
-                removeAry.splice(i, 1);
-            }
-        }
-    }
-    return removeAry;
-}
-
-function evalPoi(poiAry, prefDist, priceWeight){
+function weighPoi(poiAry, prefDist, priceWeight){
+    //console.log("weightPoi");
     //console.log(poiAry);
     var weightedPoi = [];
     for(var i = 0; i < poiAry.length; i++){
@@ -118,6 +102,8 @@ function evalPoi(poiAry, prefDist, priceWeight){
         var randArea = 180 / (poi.rating / 2 + 30) + 1;
         var randBonus = (Math.random() * 1 - 0.5) * randArea;
         
+        console.log(weight+" "+randBonus);
+        
         poi["weight"] = weight + randBonus;
         weightedPoi.push(poi);
     }
@@ -132,7 +118,7 @@ function evalPoi(poiAry, prefDist, priceWeight){
         }
     }
     
-    //console.log(weightedPoi);
+    console.log(weightedPoi);
     return weightedPoi[0];
 }
 
