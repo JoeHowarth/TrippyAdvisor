@@ -1,4 +1,5 @@
-//     
+// centers map on input address
+// returns 
     
     function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
