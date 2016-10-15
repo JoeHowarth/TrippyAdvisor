@@ -22,28 +22,30 @@ $(document).on("click", "#go", function(){
     
     var tripPois = [];
     
-    for(int i = 0; i < points; i++){
+    for(var i = 0; i < points; i++){
         if(i == 0){
-            getPois(startLoc);
+            tripPois.push(getPoi(startLoc, prefDist, priceWeight));
         }else{
-            tripPois.push(getPois(tripPois[i-1].location_id));
+            tripPois.push(getPoi(tripPois[i-1].location_id, prefDist, priceWeight));
         }
     }
+    
+    console.log(tripPois);
 
 })
 
 
 
-function getPois(location){
-    var returnPoi;
+function getPoi(location, prefDist, priceWeight){
+    var poiAry = [];
+    var ajaxComplete = false;
     $.ajax({
         url: "http://api.tripadvisor.com/api/partner/2.0/map/"+ location + "/attractions?key=89DE2CFC0C1C43978B484B55F9A514EC", 
-        dataType: "json", 
+        dataType: "json",
         success: function(poiData){
-            var poiAry = [];
             for(var i = 0; i < poiData.data.length; i++){
                 var tempPoi = poiData.data[i];
-                console.log(tempPoi);
+//                console.log(tempPoi);
                 switch(tempPoi.price_level){
                 case "$":
                     tempPoi.price_level = 1;
@@ -60,7 +62,7 @@ function getPois(location){
                 default:
                     tempPoi.price_level = 0;
                 }
-                
+
                 poiAry.push(new Poi(
                     tempPoi.location_id, 
                     tempPoi.name, 
@@ -72,18 +74,17 @@ function getPois(location){
 //                  tempPoi.cuisine, 
                     tempPoi.distance
                 ));
-                console.log(poiAry[i]);
             }
-            returnPoi = weighPoi(poiAry, 0.3, 5);
-            
-        }     
+            console.log("Hello from ajax");
+            return poiData;
+        }
     });
-    return returnPoi;
+    console.log("hello again");
 }
 
 function weighPoi(poiAry, prefDist, priceWeight){
-    console.log("weightPoi");
-    console.log(poiAry);
+    //console.log("weightPoi");
+    //console.log(poiAry);
     var weightedPoi = [];
     for(var i = 0; i < poiAry.length; i++){
         var poi = poiAry[i];
