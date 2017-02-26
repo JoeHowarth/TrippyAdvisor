@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+/*  border: 1px black solid;*/
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  
+}
+
+#left {
+  width: 30vw;
+  height: 100%;
+  background: #003366;
+  color: aliceblue;
+}
+
+#left form {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  align-items: stretch;
+  justify-content: space-around;
+}
+
+#map {
+  width: 70vw;
+  height: 100%;
+}
+
+#trippy {
+  height: 50px;
+  width: 50px;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
