@@ -10,8 +10,12 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 0, lng: 0},
         scrollwheel: false,
-        zoom: 5
+        zoom: 5,
+//        mapTypeControl: false,
+//        disableDefaultUI: true,
+//        zoomControl: true
     });
+//    google.maps.MapTypeControlOptions = false;
     directionsDisplay.setMap(map);
     directionsService = new google.maps.DirectionsService();
 }
