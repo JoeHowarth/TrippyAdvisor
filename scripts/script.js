@@ -34,7 +34,8 @@ function pushPoi(location, prefDist, priceWeight, tripLocs, points){
     var poiAry = [];
     var ajaxComplete = false;
     $.ajax({
-        url: "http://api.tripadvisor.com/api/partner/2.0/map/"+ location + "/attractions?key=89DE2CFC0C1C43978B484B55F9A514EC", 
+      url:  https:"//maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + location + "&radius=500&type=restaurant&key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4",
+//      url: "http://api.tripadvisor.com/api/partner/2.0/map/"+ location + "/attractions?key=89DE2CFC0C1C43978B484B55F9A514EC", 
         dataType: "json",
         success: function(poiData){
             for(var i = 0; i < poiData.data.length; i++){

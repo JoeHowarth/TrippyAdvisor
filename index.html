@@ -4,56 +4,72 @@
 <head>
   <meta charset="utf-8">
   <title>Trippy Advisor</title>
-  <link href="main.css" type="text/css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="icon" href="images/trippyadvisor.png">
 
+  <link href="main.css" type="text/css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway" rel="stylesheet">
+  <script async defer  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4&callback=initMap">
+  </script>
+  <script async defer src="scripts/jquery.fittext.js"></script>
+  
+  <script async defer src="scripts/jquery-textfill-master/textfill.jquery.json"></script>
 </head>
 
 <body>
   <div class="container">
 
-    <nav id="left" class="col-sm-3">
-      <header class="logo">
-        <h1> trippy<span class="greenText">advisor </span></h1>
 
-      </header>
-      <form>
+    <header id="title" class="left">
+      <h1> trippy<span class="greenText">Advisor </span></h1>
+
+    </header>
+
+    <div id="spacer"> </div>
+    <div id="content" class="left">
+      <form id="form">
         <div class="form-group">
           <label for="address">Address</label>
-          <input type="text" class="form-control" id="address" placeholder="574 Boston Ave, Medford, MA">
+          <input type="text" class="form-control" id="address" placeholder="  574 Boston Ave, Medford, MA">
         </div>
 
         <div class="form-group">
-          <label for="locNum">Number of Desired Locations
-            <br/>(10 max)</label>
-          <input type="text" class="form-control" id="locNum" placeholder="5">
+          <label for="locNum">Locations</label>
+          <input type="text" class="form-control" id="locNum" placeholder="  5">
         </div>
 
         <div class="form-group">
-          <label for="distance">Desired Travel Distance (Miles)</label>
-          <input type="text" class="form-control" id="distance" placeholder="3">
+          <label for="distance">Travel Distance</label>
+          <input type="text" class="form-control" id="distance" placeholder="  3 (miles)">
         </div>
 
         <div class="form-group">
-          <label for="priceWeight">Cheapness Scale: 1-10 || Royalty-Mr.Krabs</label>
-          <input type="text" class="form-control" id="priceWeight" placeholder="5">
+          <label for="priceWeight">Cheapness </label>
+          <input type="text" class="form-control" id="priceWeight" placeholder="Scale: 1-10 || Royalty-Mr.Krabs">
         </div>
       </form>
 
-      <button id="go" type="button" class="btn btn-primary btn-sm btn-block">Time to Trip!!!</button>
+      <div class="btn-cont">
+        <a href="#" class="btn">Time to Trip <span class="arrow">❯</span></a>
+      </div>
+      
+    </div>
+
+
+    <div class="logo">
       <img id="trippy" src="images/trippyadvisor.png" alt="Trippy Time" />
-    </nav>
+    </div>
 
     <div id="map" class="right"></div>
 
   </div>
 
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyifMNPY2-AG4ry0JCQgG3DwVmuRILpu4&callback=initMap">
-  </script>
-  <script defer src="scripts/map.js"></script>
-  <script defer src="scripts/script.js"></script>
-  <script defer src="scripts/input.js"></script>
+
+  <script async defer src="scripts/map.js"></script>
+  <script async defer src="scripts/script.js"></script>
+  <script async defer src="scripts/input.js"></script>
+  <script async defer src="scripts/effects.js" ></script>
 
 </body>
 
